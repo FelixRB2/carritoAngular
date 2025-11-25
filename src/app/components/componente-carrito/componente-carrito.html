@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row g-4 mt-1">
+        <!-- Productos -->
+        <div class="col-12 col-lg-8">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+                @for (producto of arrayCarrito; track $index) {
+                <div class="col">
+                    <app-componente-producto [miProducto]="producto"></app-componente-producto>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Carrito total -->
+        <div class="col-12 col-lg-4">
+            <div class="card p-3 shadow">
+                <h5>Carrito</h5>
+                @for (producto of productosEnCarrito; track $index) {
+                <p>{{ producto.title }} x {{ producto.cantidad }} = {{ producto.cantidad * precioNumero(producto) }}</p>
+                }
+                <hr>
+                <p>Total: {{ totalCarrito }}</p>
+                <button class="btn btn-warning w-100" (click)="vaciarCarrito()">Vaciar carrito</button>
+            </div>
+        </div>
+    </div>
+</div>

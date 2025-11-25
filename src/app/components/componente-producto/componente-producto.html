@@ -1,0 +1,15 @@
+<div class="card shadow mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h4 class="card-title">{{ miProducto.title }}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">SKU: {{ miProducto.sku }}</h6>
+    <p class="card-text">Precio: {{ miProducto.price }}</p>
+
+    <div class="d-flex align-items-center">
+      <button class="btn btn-danger mx-1" (click)="restarCantidad()">-</button>
+      <input type="number" class="form-control text-center" [value]="cantidad" style="width: 60px;" disabled>
+      <button class="btn btn-primary mx-1" (click)="sumarCantidad()">+</button>
+    </div>
+
+    <p class="mt-2">Total: {{ total }}</p>
+  </div>
+</div>
