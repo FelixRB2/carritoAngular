@@ -21,7 +21,7 @@ export class ComponenteCarrito implements OnInit {
     this.arrayCarrito = this.ServiceApi.getAllProducts();
   }
 
-  // propiedad para iterar en el @for
+
   get productosEnCarrito() {
     return this.CarritoService.getCarrito();
   }
@@ -29,15 +29,15 @@ export class ComponenteCarrito implements OnInit {
   get totalCarrito() {
   return this.CarritoService.getCarrito()
     .reduce((sum, p) => sum + parseFloat(p.price) * p.cantidad, 0);
-}
-
-precioNumero(producto: InterfaceProducto): number {
-  return parseFloat(producto.price);
-}
-
-
-
-  vaciarCarrito() {
-    this.CarritoService.vaciarCarrito();
   }
+
+  // Convierte el precio almacenado como string a número decimal
+  precioNumero(producto: InterfaceProducto): number {
+    return parseFloat(producto.price);
+  }
+
+  eliminarProducto(producto: any) {
+    this.CarritoService.eliminarProducto(producto);
+  }
+
 }

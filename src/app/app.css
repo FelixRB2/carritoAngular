@@ -1,0 +1,10 @@
+.app-header {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.app-main {
+    margin: 30px auto;
+    padding: 0 20px;
+}

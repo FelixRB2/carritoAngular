@@ -11,7 +11,7 @@ export class ComponenteProducto {
 
   @Input() miProducto!: InterfaceProducto;
   CarritoService = inject(ServiceCarrito);
-  cantidad: number = 0; // cantidad local en el componente
+  cantidad: number = 0; 
 
   sumarCantidad() {
     this.cantidad++;
@@ -24,8 +24,12 @@ export class ComponenteProducto {
       this.CarritoService.actualizarCantidad(this.miProducto, this.cantidad);
     }
   }
+  eliminarProducto() {
+  this.cantidad = 0;
+  this.CarritoService.eliminarProducto(this.miProducto);
+}
 
   get total() {
-    return this.cantidad * Number(this.miProducto.price);
+    return (this.cantidad * Number(this.miProducto.price)).toFixed(2);
   }
 }

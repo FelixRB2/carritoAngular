@@ -1,29 +1,81 @@
+.producto-fila {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 0.5fr;
+    /* define ancho de cada columna */
+    align-items: center;
+    /* centra verticalmente el contenido */
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    /* línea entre filas */
+    gap: 10px;
+    /* espacio entre columnas */
+    background: #fff;
+    border-radius: 8px;
+    transition: 0.2s all ease-in-out;
+}
+
+.producto-fila:hover {
+    background: #f8f9fa;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.col {
+    text-align: center;
+}
+
 .producto {
-    border-radius: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
 }
 
-.producto:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+.titulo {
+    font-weight: 600;
+    font-size: 1rem;
 }
 
-.cantidad {
-    width: 40px;
+.sku {
+    font-size: 12px;
+    color: #777;
+}
+
+.cantidad button,
+.eliminar button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-cantidad {
+    background-color: #e9ecef;
+    color: #333;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-cantidad:hover {
+    background-color: #dee2e6;
+}
+
+.btn-eliminar {
+    background-color: #f8d7da;
+    color: #721c24;
+    transition: 0.2s ease-in-out;
+}
+
+.btn-eliminar:hover {
+    background-color: #f5c6cb;
+}
+
+.cantidad span {
+    margin: 0 10px;
+    font-weight: bold;
+    min-width: 20px;
     display: inline-block;
     text-align: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.quantity-box button {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    font-size: 1.2rem;
 }
 
 .total {
-    border-top: 1px solid #eaeaea;
-    padding-top: 8px;
+    font-weight: bold;
+    color: #333;
 }

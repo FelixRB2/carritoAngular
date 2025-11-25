@@ -1,68 +1,60 @@
-<div class="container-fluid">
-    <div class="row g-4 mt-3">
+<div class="main-container">
 
-        <!-- Productos -->
-        <div class="col-12 col-lg-8">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-                @for (producto of arrayCarrito; track $index) {
-                <div class="col">
-                    <app-componente-producto [miProducto]="producto">
-                    </app-componente-producto>
-                </div>
-                }
-            </div>
+    <!-- Lista de productos -->
+    <div class="productos">
+
+        <!-- Cabecera -->
+        <div class="producto-fila cabecera">
+            <div>Producto</div>
+            <div>Precio</div>
+            <div>Cantidad</div>
+            <div>Total</div>
+            <div>🗑</div>
         </div>
 
-        <!-- Carrito / Resumen -->
-        <div class="col-12 col-lg-4">
-            <div class="carrito">
-
-                <h4 class="carrito-titulo">
-                    Tu carrito
-                </h4>
-
-                @if (productosEnCarrito.length === 0) {
-
-                <div class="carrito-vacio">
-                    <p>🛒 El carrito está vacío</p>
-                    <small>Añade productos para verlos aquí</small>
-                </div>
-
-                } @else {
-
-                <div class="carrito-lista">
-                    @for (producto of productosEnCarrito; track $index) {
-                    <div class="carrito-item">
-
-                        <div class="carrito-info">
-                            <span class="producto-nombre">
-                    {{ producto.title }}
-                  </span>
-
-                            <span class="producto-cantidad">
-                    Cantidad: {{ producto.cantidad }}
-                  </span>
-                        </div>
-
-                        <div class="carrito-precio">
-                            {{ producto.cantidad * precioNumero(producto) }} €
-                        </div>
-
-                    </div>
-                    }
-                </div>
-
-                <div class="carrito-footer">
-                    <div class="carrito-total">
-                        <span>Total</span>
-                        <span>{{ totalCarrito }} €</span>
-                    </div>
-                </div>
-
-                }
-
-            </div>
-        </div>
-
+        <!-- Se imprimen los productos, recorre arrayCarrito y muestra un componente por producto -->
+        @for (producto of arrayCarrito; track $index) {
+        <!-- Se pasa el producto al componente hijo -->
+        <app-componente-producto [miProducto]="producto"></app-componente-producto>
+        }
     </div>
+
+    <!-- Sección del carrito (parte derecha de la pantalla) -->
+    <div class="carrito-container">
+        <div class="carrito">
+
+            <h4 class="carrito-titulo">TOTAL</h4>
+
+            <!-- Si no hay productos en el carrito -->
+            @if (productosEnCarrito.length === 0) {
+            <!-- Mensaje de carrito vacío -->
+            <div class="carrito-vacio">
+                <p>El carrito está vacío</p>
+                <small>Añade productos para verlos aquí</small>
+            </div>
+            } @else {
+            <!-- Si hay productos en el carrito se listan -->
+            <div class="carrito-lista">
+                <!-- Se recorre cada producto dentro del carrito -->
+                @for (producto of productosEnCarrito; track $index) {
+                <div class="carrito-item">
+                    <div class="carrito-info">
+                        <span class="producto-nombre">{{ producto.title }}</span>
+                        <span class="producto-cantidad">Cantidad: {{ producto.cantidad }}</span>
+                    </div>
+                    <div class="carrito-precio">{{ (producto.cantidad * precioNumero(producto)).toFixed(2) }} €</div>
+                </div>
+                }
+            </div>
+
+            <div class="carrito-footer">
+                <div class="carrito-total">
+                    <span>Total:</span>
+                    <span>{{ totalCarrito.toFixed(2) }} €</span>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
 </div>

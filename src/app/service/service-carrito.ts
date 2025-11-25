@@ -14,7 +14,12 @@ export class ServiceCarrito {
     const index = this.carrito.findIndex(p => p.sku === producto.sku);
 
     if (index !== -1) {
-      this.carrito[index].cantidad = cantidad;
+      if (cantidad > 0) {
+        this.carrito[index].cantidad = cantidad;
+      } else {
+        // Si la cantidad llega a 0 eliminamos el producto del carrito
+        this.carrito.splice(index, 1);
+      }
     } else if (cantidad > 0) {
       this.carrito.push({ ...producto, cantidad });
     }
@@ -25,12 +30,12 @@ export class ServiceCarrito {
   }
 
   getTotal(): number {
-    return this.carrito
-      .filter(p => p.cantidad > 0)
-      .reduce((sum, p) => sum + Number(p.price) * p.cantidad, 0);
+    return this.carrito.reduce((sum, p) => sum + Number(p.price) * p.cantidad, 0);
   }
 
-  vaciarCarrito() {
-    this.carrito.forEach(p => p.cantidad = 0);
-  }
+  eliminarProducto(producto: any) {
+  this.carrito = this.carrito.filter(p => p.sku !== producto.sku);
 }
+
+}
+
