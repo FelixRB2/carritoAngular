@@ -1,0 +1,29 @@
+.producto {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.cantidad {
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.quantity-box button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.total {
+    border-top: 1px solid #eaeaea;
+    padding-top: 8px;
+}

@@ -1,27 +1,68 @@
 <div class="container-fluid">
-    <div class="row g-4 mt-1">
+    <div class="row g-4 mt-3">
+
         <!-- Productos -->
         <div class="col-12 col-lg-8">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
                 @for (producto of arrayCarrito; track $index) {
                 <div class="col">
-                    <app-componente-producto [miProducto]="producto"></app-componente-producto>
+                    <app-componente-producto [miProducto]="producto">
+                    </app-componente-producto>
                 </div>
                 }
             </div>
         </div>
 
-        <!-- Carrito total -->
+        <!-- Carrito / Resumen -->
         <div class="col-12 col-lg-4">
-            <div class="card p-3 shadow">
-                <h5>Carrito</h5>
-                @for (producto of productosEnCarrito; track $index) {
-                <p>{{ producto.title }} x {{ producto.cantidad }} = {{ producto.cantidad * precioNumero(producto) }}</p>
+            <div class="carrito">
+
+                <h4 class="carrito-titulo">
+                    Tu carrito
+                </h4>
+
+                @if (productosEnCarrito.length === 0) {
+
+                <div class="carrito-vacio">
+                    <p>🛒 El carrito está vacío</p>
+                    <small>Añade productos para verlos aquí</small>
+                </div>
+
+                } @else {
+
+                <div class="carrito-lista">
+                    @for (producto of productosEnCarrito; track $index) {
+                    <div class="carrito-item">
+
+                        <div class="carrito-info">
+                            <span class="producto-nombre">
+                    {{ producto.title }}
+                  </span>
+
+                            <span class="producto-cantidad">
+                    Cantidad: {{ producto.cantidad }}
+                  </span>
+                        </div>
+
+                        <div class="carrito-precio">
+                            {{ producto.cantidad * precioNumero(producto) }} €
+                        </div>
+
+                    </div>
+                    }
+                </div>
+
+                <div class="carrito-footer">
+                    <div class="carrito-total">
+                        <span>Total</span>
+                        <span>{{ totalCarrito }} €</span>
+                    </div>
+                </div>
+
                 }
-                <hr>
-                <p>Total: {{ totalCarrito }}</p>
-                <button class="btn btn-warning w-100" (click)="vaciarCarrito()">Vaciar carrito</button>
+
             </div>
         </div>
+
     </div>
 </div>

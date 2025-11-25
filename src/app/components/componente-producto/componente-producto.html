@@ -1,15 +1,22 @@
-<div class="card shadow mb-3" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">{{ miProducto.title }}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">SKU: {{ miProducto.sku }}</h6>
-    <p class="card-text">Precio: {{ miProducto.price }}</p>
+<div class="card producto shadow-sm">
+    <div class="card-body">
 
-    <div class="d-flex align-items-center">
-      <button class="btn btn-danger mx-1" (click)="restarCantidad()">-</button>
-      <input type="number" class="form-control text-center" [value]="cantidad" style="width: 60px;" disabled>
-      <button class="btn btn-primary mx-1" (click)="sumarCantidad()">+</button>
+        <h3 class="card-title fw-bold text-truncate">{{ miProducto.title }}</h3>
+        <p class="sku text-muted small">SKU: {{ miProducto.sku }}</p>
+
+        <p class="precio fw-semibold fs-5">{{ miProducto.price }}€</p>
+
+        <div class="quantity-box d-flex align-items-center gap-2 mt-2">
+            <button class="btn btn-outline-danger btn-sm" (click)="restarCantidad()">−</button>
+
+            <span class="cantidad text-center">{{ cantidad }}</span>
+
+            <button class="btn btn-outline-success btn-sm" (click)="sumarCantidad()">+</button>
+        </div>
+
+        <p class="total mt-3 small text-muted">
+            Total: <strong>{{ total }} €</strong>
+        </p>
+
     </div>
-
-    <p class="mt-2">Total: {{ total }}</p>
-  </div>
 </div>
